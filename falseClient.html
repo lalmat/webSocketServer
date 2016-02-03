@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Demo WebSockets</title>
+    <script src="node_modules/socket.io-client/socket.io.js"></script>
+    <script>
+      var ip="10.130.193.35";
+      var port="1337";
+      var socket = io.connect('http://'+ip+":"+port);
+        socket.on('msg', function (data) {
+          console.log(data);
+        });
+      function sendMessage(texte) {
+        socket.emit('msg': {action:'message', text:texte});
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="mesg" />
+    <button type="button" onclick="sendMessage(document.getElementById('mesg').value)">Test</button>
+  </body>
+</html>
